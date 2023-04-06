@@ -1,0 +1,25 @@
+[project]
+name = "api"
+version = "0.0.1"
+description = "Example of AWS SAM + Starlite + PDM integration"
+authors = [
+    {name = "gusalecar", email = "gc.git@outlook.com"},
+]
+dependencies = [
+    "starlite>=1.51.9",
+    "mangum>=0.17.0",
+]
+requires-python = "~=3.9.0"
+license = {text = "MIT"}
+
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = [
+    "uvicorn>=0.21.1",
+    "-e file:///${PROJECT_ROOT}/library#egg=library",
+]
+
+[tool.pdm.scripts]
+post_lock = "pdm export --prod --without-hashes -o dependencies/requirements.txt"
+post_install = "pdm export --prod --without-hashes -o dependencies/requirements.txt"
+dev = "uvicorn src.main:app --reload"

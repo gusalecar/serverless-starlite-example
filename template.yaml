@@ -1,0 +1,86 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  StageName:
+    Type: String
+    Default: dev
+  Runtime:
+    Type: String
+    Default: python3.9
+
+Globals:
+  Function:
+    Handler: app.handler
+    Runtime: !Ref Runtime
+    Architectures:
+      - arm64
+    Environment:
+      Variables:
+        BASE_PATH: !Sub /${StageName}
+    Layers:
+      - !Ref ApiDependencies
+      - !Ref ApiLibrary
+
+Resources:
+  ApiDependencies:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      Description: Python packages needed for the API
+      CompatibleArchitectures:
+        - arm64
+      CompatibleRuntimes: [!Ref Runtime]
+      ContentUri: dependencies
+      RetentionPolicy: Delete
+    Metadata:
+      BuildMethod: !Ref Runtime
+      BuildArchitecture: arm64
+
+  ApiLibrary:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      Description: Shared code for the API
+      CompatibleArchitectures:
+        - arm64
+      CompatibleRuntimes: [!Ref Runtime]
+      ContentUri: library/src
+      RetentionPolicy: Delete
+    Metadata:
+      BuildMethod: !Ref Runtime
+      BuildArchitecture: arm64
+
+  Gateway:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      Name: Test API
+      StageName: !Ref StageName
+
+  Reports:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/reports
+      Events:
+        GatewayEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Gateway
+            Method: ANY
+            Path: /reports/{proxy+}
+
+  Teams:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/teams
+      Events:
+        GatewayEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Gateway
+            Method: ANY
+            Path: /teams/{proxy+}
+
+Outputs:
+  GatewayId:
+    Value: !Ref Gateway
+  HttpApiUrl:
+    Value: !Sub https://${Gateway}.execute-api.${AWS::Region}.${AWS::URLSuffix}/${StageName}
