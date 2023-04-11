@@ -1,6 +1,6 @@
 # API
 
-Example of integrating API Gateway + Starlite using PDM for dependency management and AWS SAM for deployment.
+Example of integrating API Gateway + Starlite using PDM (2.5+) for dependency management and AWS SAM for deployment.
 
 ## Project structure
 
@@ -25,9 +25,8 @@ Entrypoint to locally execute the Starlite app. A PDM script is available `pdm r
 ## How to use
 
 1. Clone this repo.
-2. Run `pdm config venv.use_pip True` to include `pip` in your virtual environment. This is needed by AWS SAM.
-3. Run `pdm install`.
-4. Run locally with `pdm run dev`.
+2. Run `pdm install`.
+3. Run locally with `pdm run dev`.
 
 ### Deploy
 
