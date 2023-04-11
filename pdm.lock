@@ -33,22 +33,6 @@ requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7
 summary = "Cross-platform colored terminal text."
 
 [[package]]
-name = "dnspython"
-version = "2.3.0"
-requires_python = ">=3.7,<4.0"
-summary = "DNS toolkit"
-
-[[package]]
-name = "email-validator"
-version = "1.3.1"
-requires_python = ">=3.5"
-summary = "A robust email address syntax and deliverability validation library."
-dependencies = [
-    "dnspython>=1.15.0",
-    "idna>=2.0.0",
-]
-
-[[package]]
 name = "faker"
 version = "18.3.4"
 requires_python = ">=3.7"
@@ -111,10 +95,28 @@ dependencies = [
 [[package]]
 name = "library"
 version = "0.0.1"
-requires_python = "~=3.9.0"
 editable = true
 path = "./library"
 summary = ""
+
+[[package]]
+name = "litestar"
+version = "2.0.0a4"
+requires_python = ">=3.8,<4.0"
+summary = "Performant, light and flexible ASGI API Framework"
+dependencies = [
+    "anyio>=3",
+    "fast-query-parsers",
+    "httpx>=0.22",
+    "importlib-metadata; python_version < \"3.10\"",
+    "mako>=1.2.4",
+    "msgspec",
+    "multidict>=6.0.2",
+    "polyfactory>=2.0.0a1",
+    "pydantic<2",
+    "pyyaml",
+    "typing-extensions",
+]
 
 [[package]]
 name = "mako"
@@ -153,33 +155,22 @@ requires_python = ">=3.7"
 summary = "multidict implementation"
 
 [[package]]
+name = "polyfactory"
+version = "2.0.0a1"
+requires_python = ">=3.8,<4.0"
+summary = "Mock data generation factories"
+dependencies = [
+    "faker",
+    "typing-extensions",
+]
+
+[[package]]
 name = "pydantic"
 version = "1.10.7"
 requires_python = ">=3.7"
 summary = "Data validation and settings management using python type hints"
 dependencies = [
     "typing-extensions>=4.2.0",
-]
-
-[[package]]
-name = "pydantic-factories"
-version = "1.17.3"
-requires_python = ">=3.8,<4.0"
-summary = "Mock data generation for pydantic based models and python dataclasses"
-dependencies = [
-    "faker",
-    "pydantic>=1.10.0",
-    "typing-extensions",
-]
-
-[[package]]
-name = "pydantic-openapi-schema"
-version = "1.5.1"
-requires_python = ">=3.8"
-summary = "OpenAPI Schema using pydantic. Forked for Starlite-API from 'openapi-schema-pydantic'."
-dependencies = [
-    "email-validator",
-    "pydantic>=1.10.0",
 ]
 
 [[package]]
@@ -225,26 +216,6 @@ requires_python = ">=3.7"
 summary = "Sniff out which async library your code is running under"
 
 [[package]]
-name = "starlite"
-version = "1.51.9"
-requires_python = ">=3.8,<4.0"
-summary = "Performant, light and flexible ASGI API Framework"
-dependencies = [
-    "anyio>=3",
-    "fast-query-parsers",
-    "httpx>=0.22",
-    "importlib-metadata; python_version < \"3.10\"",
-    "mako>=1.2.4",
-    "msgspec>=0.11.0",
-    "multidict>=6.0.2",
-    "pydantic",
-    "pydantic-factories",
-    "pydantic-openapi-schema>=1.5.0",
-    "pyyaml",
-    "typing-extensions",
-]
-
-[[package]]
 name = "typing-extensions"
 version = "4.5.0"
 requires_python = ">=3.7"
@@ -267,8 +238,9 @@ requires_python = ">=3.7"
 summary = "Backport of pathlib-compatible object wrapper for zip files"
 
 [metadata]
-lock_version = "4.1"
-content_hash = "sha256:fc75d9c88d7e6fc2a923573e042f0c3c7da2478fc6cb82021b0f37b15d803b64"
+lock_version = "4.2"
+groups = ["default", "dev"]
+content_hash = "sha256:ac93a3102e1492e3583cdfc7c6a5946fe690bc2956cc23adbb91da955a140ab6"
 
 [metadata.files]
 "anyio 3.6.2" = [
@@ -286,14 +258,6 @@ content_hash = "sha256:fc75d9c88d7e6fc2a923573e042f0c3c7da2478fc6cb82021b0f37b15
 "colorama 0.4.6" = [
     {url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
-]
-"dnspython 2.3.0" = [
-    {url = "https://files.pythonhosted.org/packages/12/86/d305e87555430ff4630d729420d97dece3b16efcbf2b7d7e974d11b0d86c/dnspython-2.3.0-py3-none-any.whl", hash = "sha256:89141536394f909066cabd112e3e1a37e4e654db00a25308b0f130bc3152eb46"},
-    {url = "https://files.pythonhosted.org/packages/91/8b/522301c50ca1f78b09c2ca116ffb0fd797eadf6a76085d376c01f9dd3429/dnspython-2.3.0.tar.gz", hash = "sha256:224e32b03eb46be70e12ef6d64e0be123a64e621ab4c0822ff6d450d52a540b9"},
-]
-"email-validator 1.3.1" = [
-    {url = "https://files.pythonhosted.org/packages/8e/db/5849bad11c5e03b41c7331370a2020bc98822dd8253b1861ec70351b8e75/email_validator-1.3.1.tar.gz", hash = "sha256:d178c5c6fa6c6824e9b04f199cf23e79ac15756786573c190d2ad13089411ad2"},
-    {url = "https://files.pythonhosted.org/packages/ba/ec/adc595d04e795b04bb0028fc6b067713fdb4a7e8cec44b428f7144fc432e/email_validator-1.3.1-py2.py3-none-any.whl", hash = "sha256:49a72f5fa6ed26be1c964f0567d931d10bf3fdeeacdf97bc26ef1cd2a44e0bda"},
 ]
 "faker 18.3.4" = [
     {url = "https://files.pythonhosted.org/packages/39/31/4a47dabea4f339b1a68dcaf5e9f8cfddb42db157f3a5dc9ec62a224e1232/Faker-18.3.4.tar.gz", hash = "sha256:662db19e32768f15440525526849b561bf866cafc05dc8dd674645b9a6070599"},
@@ -336,6 +300,10 @@ content_hash = "sha256:fc75d9c88d7e6fc2a923573e042f0c3c7da2478fc6cb82021b0f37b15
 "importlib-metadata 6.1.0" = [
     {url = "https://files.pythonhosted.org/packages/e2/d8/3d431bade4598ad9e33be9da41d15e6607b878008e922d122659ab01b077/importlib_metadata-6.1.0.tar.gz", hash = "sha256:43ce9281e097583d758c2c708c4376371261a02c34682491a8e98352365aad20"},
     {url = "https://files.pythonhosted.org/packages/f8/7d/e3adad613703c86d62aa991b45d6f090cf59975078a8c8100b50a0c86948/importlib_metadata-6.1.0-py3-none-any.whl", hash = "sha256:ff80f3b5394912eb1b108fcfd444dc78b7f1f3e16b16188054bd01cb9cb86f09"},
+]
+"litestar 2.0.0a4" = [
+    {url = "https://files.pythonhosted.org/packages/67/98/aac367a52f4254591e4b3e2fbd1a6c857cc052a47f7083757f44d28c1803/litestar-2.0.0a4-py3-none-any.whl", hash = "sha256:cf6dfeeae170329005c62ab6a5cbdff6ffafe0f9528caf4f201fd93571e7e63b"},
+    {url = "https://files.pythonhosted.org/packages/e3/d2/b6153beff91acc9441cd0fbabd32b1ce3f06900072da093393ec444d1046/litestar-2.0.0a4.tar.gz", hash = "sha256:5bf9533e2233244d0001d95e941138db6712a787c52185161ea814db5077ac02"},
 ]
 "mako 1.2.4" = [
     {url = "https://files.pythonhosted.org/packages/03/3b/68690a035ba7347860f1b8c0cde853230ba69ff41df5884ea7d89fe68cd3/Mako-1.2.4-py3-none-any.whl", hash = "sha256:c97c79c018b9165ac9922ae4f32da095ffd3c4e6872b45eded42926deea46818"},
@@ -504,6 +472,10 @@ content_hash = "sha256:fc75d9c88d7e6fc2a923573e042f0c3c7da2478fc6cb82021b0f37b15
     {url = "https://files.pythonhosted.org/packages/fc/5b/0a4205a1248fb152f596a03c971c6ef1585d0c98e56b6886dc35d084e366/multidict-6.0.4-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:7d18748f2d30f94f498e852c67d61261c643b349b9d2a581131725595c45ec6c"},
     {url = "https://files.pythonhosted.org/packages/fe/0c/8469202f8f4b0e65816f91c3febc4bda7316c995b59ecdf3b15c574f7a24/multidict-6.0.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:cc8e1d0c705233c5dd0c5e6460fbad7827d5d36f310a0fadfd45cc3029762258"},
 ]
+"polyfactory 2.0.0a1" = [
+    {url = "https://files.pythonhosted.org/packages/5b/e0/395e5ccd88e1a31d6ab60b43d9174c4c434b1f5ecc3fb81c471183a2b7c3/polyfactory-2.0.0a1.tar.gz", hash = "sha256:888ab036778cb0d0707368c7bcfd89257317f08565efc00c32d6c55975d41f52"},
+    {url = "https://files.pythonhosted.org/packages/b3/e9/6967356c190ca77007ae053dc607c071e659fc68cf2647efb3d301778863/polyfactory-2.0.0a1-py3-none-any.whl", hash = "sha256:19312b27d78e63a4b16bfc39eecfa0e11783acfe106d3772c93738fcc1331002"},
+]
 "pydantic 1.10.7" = [
     {url = "https://files.pythonhosted.org/packages/00/43/f15d991ce715a2e7a229ef7c2534527d6fe4e5d260a675bd06615a4ede82/pydantic-1.10.7-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:976cae77ba6a49d80f461fd8bba183ff7ba79f44aa5cfa82f1346b5626542f8e"},
     {url = "https://files.pythonhosted.org/packages/05/4e/92a0c1fd305f764801dba26182b08ccf72026766fc4451d88186185467f2/pydantic-1.10.7-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:dfe2507b8ef209da71b6fb5f4e597b50c5a34b78d7e857c4f8f3115effaef5fe"},
@@ -541,14 +513,6 @@ content_hash = "sha256:fc75d9c88d7e6fc2a923573e042f0c3c7da2478fc6cb82021b0f37b15
     {url = "https://files.pythonhosted.org/packages/f6/2d/0fc591686bc119d844f26268f503a7a504fbc9dd6a02e14aa42738c21fed/pydantic-1.10.7-cp39-cp39-win_amd64.whl", hash = "sha256:d71e69699498b020ea198468e2480a2f1e7433e32a3a99760058c6520e2bea7e"},
     {url = "https://files.pythonhosted.org/packages/fa/c2/3df79cd00e65678fce12e59e8c95378a992a93d7b9f9510d4f1f65df1936/pydantic-1.10.7-cp311-cp311-win_amd64.whl", hash = "sha256:b4a849d10f211389502059c33332e91327bc154acc1845f375a99eca3afa802d"},
     {url = "https://files.pythonhosted.org/packages/fd/66/3da2e7c0306251435bd61ae9da52db8a00672fdf2b2db1e3efe1692f41dd/pydantic-1.10.7-cp37-cp37m-musllinux_1_1_i686.whl", hash = "sha256:950ce33857841f9a337ce07ddf46bc84e1c4946d2a3bba18f8280297157a3fd1"},
-]
-"pydantic-factories 1.17.3" = [
-    {url = "https://files.pythonhosted.org/packages/31/c1/73e688b29bee1d68604b45e8ce3ee410b4bd09ded23546e18263c1855c74/pydantic_factories-1.17.3.tar.gz", hash = "sha256:de36e0db7108af5f4328308da9a4049311c4d5e0814553d2f39078b08b05e48d"},
-    {url = "https://files.pythonhosted.org/packages/40/49/81bbfccaf7174e7a94be1fa95d9ed46da6663372b2a7cd597c1c6fdfcabe/pydantic_factories-1.17.3-py3-none-any.whl", hash = "sha256:5a1522a31d27e1af414719c510a4a934365292f3ea6fdc843ed65d0564242636"},
-]
-"pydantic-openapi-schema 1.5.1" = [
-    {url = "https://files.pythonhosted.org/packages/74/a6/a1bec785065f3ddabb161dd490a2fe681a56020111d4d315eeffa58a41f8/pydantic_openapi_schema-1.5.1.tar.gz", hash = "sha256:d9b56235f4c4817c6e3693c4f8122c3e5e9c75f6b3b454524ad985012a264daf"},
-    {url = "https://files.pythonhosted.org/packages/bb/a1/9b906584055e2a9ee48368e2ad7148625e06594fb0f81f8656c6e71eb672/pydantic_openapi_schema-1.5.1-py3-none-any.whl", hash = "sha256:fd5b1bff81ff70faa87fec62bd8193ccd671f31bc15b32a4557623d3db0e5eae"},
 ]
 "python-dateutil 2.8.2" = [
     {url = "https://files.pythonhosted.org/packages/36/7a/87837f39d0296e723bb9b62bbb257d0355c7f6128853c78955f57342a56d/python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
@@ -607,10 +571,6 @@ content_hash = "sha256:fc75d9c88d7e6fc2a923573e042f0c3c7da2478fc6cb82021b0f37b15
 "sniffio 1.3.0" = [
     {url = "https://files.pythonhosted.org/packages/c3/a0/5dba8ed157b0136607c7f2151db695885606968d1fae123dc3391e0cfdbf/sniffio-1.3.0-py3-none-any.whl", hash = "sha256:eecefdce1e5bbfb7ad2eeaabf7c1eeb404d7757c379bd1f7e5cce9d8bf425384"},
     {url = "https://files.pythonhosted.org/packages/cd/50/d49c388cae4ec10e8109b1b833fd265511840706808576df3ada99ecb0ac/sniffio-1.3.0.tar.gz", hash = "sha256:e60305c5e5d314f5389259b7f22aaa33d8f7dee49763119234af3755c55b9101"},
-]
-"starlite 1.51.9" = [
-    {url = "https://files.pythonhosted.org/packages/82/fd/4cacc3a5659a281aabf3b1be63f4f35a3cfe573c16dd8bfa0349be856735/starlite-1.51.9-py3-none-any.whl", hash = "sha256:cdf14c8a69e9d0557f3da3cfd7990fe7b7a1f27f5a10e06a48ed88f66f4ca0d8"},
-    {url = "https://files.pythonhosted.org/packages/c3/a3/d5219d195d87afbff8401890a330544e256b3062e829925c548403ddfe1b/starlite-1.51.9.tar.gz", hash = "sha256:349b80046b961f70f75278b7a35a2fd0904dda78241b6250292b04ae3eb1341a"},
 ]
 "typing-extensions 4.5.0" = [
     {url = "https://files.pythonhosted.org/packages/31/25/5abcd82372d3d4a3932e1fa8c3dbf9efac10cc7c0d16e78467460571b404/typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},

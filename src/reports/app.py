@@ -1,7 +1,7 @@
 import os
 
 from mangum import Mangum
-from starlite import Router, Starlite, get
+from litestar import Router, Litestar, get
 
 from db import get_data
 
@@ -18,7 +18,7 @@ app = None
 def handler(event, context):
     global app
     if not app:
-        app = Starlite([reports_router])
+        app = Litestar([reports_router])
     path = os.environ["BASE_PATH"]
     asgi_handler = Mangum(app, lifespan="off", api_gateway_base_path=path)
     return asgi_handler(event, context)

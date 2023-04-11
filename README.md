@@ -1,6 +1,6 @@
 # API
 
-Example of integrating API Gateway + Starlite using PDM (2.5+) for dependency management and AWS SAM for deployment.
+Example of integrating API Gateway + Litestar using PDM (2.5+) for dependency management and AWS SAM for deployment.
 
 ## Project structure
 
@@ -20,7 +20,7 @@ The lambdas code, one folder per lambda. Inspect the teams lambda for the boiler
 
 ### `src/main.py`
 
-Entrypoint to locally execute the Starlite app. A PDM script is available `pdm run dev` or `pdm dev`. You should add the per-lambda subroutes to this file.
+Entrypoint to locally execute the Litestar app. A PDM script is available `pdm run dev` or `pdm dev`. You should add the per-lambda subroutes to this file.
 
 ## How to use
 
