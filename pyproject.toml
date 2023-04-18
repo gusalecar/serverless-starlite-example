@@ -9,7 +9,7 @@ dependencies = [
     "mangum>=0.17.0",
     "litestar>=2.0.0a4",
 ]
-requires-python = "~=3.9.0"
+requires-python = "~=3.10.0"
 license = {text = "MIT"}
 
 [tool.pdm]

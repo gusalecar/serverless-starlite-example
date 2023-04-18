@@ -7,7 +7,7 @@ Parameters:
     Default: dev
   Runtime:
     Type: String
-    Default: python3.9
+    Default: python3.10
 
 Globals:
   Function:
